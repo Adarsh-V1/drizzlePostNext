@@ -1,22 +1,27 @@
-import {betterAuth} from 'better-auth'
-import {drizzleAdapter} from 'better-auth/adapters/drizzle'
+import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
+import { db } from "@/db/drizzle";
+import { env } from "@/lib/env";
 
-import { db } from '@/db/drizzle'
-
+const hasGoogleOauth = Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
 
 export const auth = betterAuth({
-    database: drizzleAdapter(db,{
-        provider: "pg"
-    }),
-    emailAndPassword:{
-        enabled: true
-    },
-    socialProviders:{
-        google: {
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-        }, 
-    }
-})
-
+  database: drizzleAdapter(db, {
+    provider: "pg",
+  }),
+  trustedOrigins: [env.NEXT_PUBLIC_APP_URL],
+  emailAndPassword: {
+    enabled: true,
+  },
+  ...(hasGoogleOauth
+    ? {
+        socialProviders: {
+          google: {
+            clientId: env.GOOGLE_CLIENT_ID!,
+            clientSecret: env.GOOGLE_CLIENT_SECRET!,
+          },
+        },
+      }
+    : {}),
+});

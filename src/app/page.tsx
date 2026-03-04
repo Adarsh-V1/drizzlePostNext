@@ -1,12 +1,12 @@
-import { UserList } from "@/features/users/components/user-list"
+import { UserList } from "@/features/users/components/user-list";
 
-function page() {
+function Page() {
   return (
-    <div className="mx-10">
-        <h1>Welcome to Lightseeker</h1>
-        <UserList />
-     </div>
-  )
+    <main className="mx-auto max-w-4xl px-6 py-10">
+      <h1 className="mb-6 text-2xl font-semibold">Lightseeker</h1>
+      <UserList />
+    </main>
+  );
 }
 
-export default page
+export default Page;

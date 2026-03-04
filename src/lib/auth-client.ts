@@ -1,10 +1,7 @@
-import { createAuthClient } from "better-auth/react"
+import { createAuthClient } from "better-auth/react";
 
-export const {
-    signIn,
-    signOut,
-    useSession,
-    signUp,
-} = createAuthClient({
-    baseURL: process.env.NEXT_PUBLIC_APP_URL!,
-})
+import { publicEnv } from "@/lib/env";
+
+export const { signIn, signOut, useSession, signUp } = createAuthClient({
+  baseURL: publicEnv.NEXT_PUBLIC_APP_URL,
+});
