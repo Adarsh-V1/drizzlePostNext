@@ -1,11 +1,9 @@
-import { UserList } from "@/features/users/components/user-list";
-
 function Page() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-10">
-      <h1 className="mb-6 text-2xl font-semibold">Lightseeker</h1>
-      <UserList />
-    </main>
+    <div>
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the main landing page of the application.</p>
+    </div>
   );
 }
 
